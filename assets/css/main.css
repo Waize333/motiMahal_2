@@ -1,4 +1,3 @@
-
 :root {
   --default-font: "Roboto",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --heading-font: "Playfair Display",  sans-serif;
@@ -6,23 +5,23 @@
 }
 
 /* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
-:root { 
-  --background-color: #0c0b09; /* Background color for the entire website, including individual sections */
-  --default-color: rgba(255, 255, 255, 0.7); /* Default color used for the majority of the text content across the entire website */
-  --heading-color: #ffffff; /* Color for headings, subheadings and title throughout the website */
-  --accent-color: #cda45e; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
-  --surface-color: #29261f; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
-  --contrast-color: #0c0b09; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
+:root {
+  --background-color: #fdf2e9;
+  --default-color: #8b0000;
+  --heading-color: #8b0000;
+  --accent-color: #ff6347;
+  --surface-color: #f5c6aa;
+  --contrast-color: #ffffff;
 }
 
-/* Nav Menu Colors - The following color variables are used specifically for the navigation menu. They are separate from the global colors to allow for more customization options */
+/* Nav Menu Colors - The following color variables are used specifically for the navigation menu */
 :root {
   --nav-color: #ffffff;  /* The default color of the main navmenu links */
-  --nav-hover-color: #cda45e; /* Applied to main navmenu links when they are hovered over or active */
+  --nav-hover-color: var(--accent-color); /* Changed from gold to accent color */
   --nav-mobile-background-color: #29261f; /* Used as the background color for mobile navigation menu */
-  --nav-dropdown-background-color: #29261f; /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
-  --nav-dropdown-color: #ffffff; /* Used for navigation links of the dropdown items in the navigation menu. */
-  --nav-dropdown-hover-color: #cda45e; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
+  --nav-dropdown-background-color: #29261f; /* Used as the background color for dropdown items */
+  --nav-dropdown-color: #ffffff; /* Used for navigation links of the dropdown items */
+  --nav-dropdown-hover-color: var(--accent-color); /* Changed from gold to accent color */
 }
 
 /* Color Presets - These classes override global colors when applied to any section or element, providing reuse of the sam color scheme. */
@@ -290,35 +289,67 @@ h6 {
 
 .header .logo {
   line-height: 1;
+  position: relative;
+  padding-bottom: 8px;
+}
+
+.header .logo:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--accent-color);
+}
+
+.scrolled .header .logo:after {
+  background: color-mix(in srgb, var(--accent-color), transparent 50%); /* Make the line lighter */
+  opacity: 0.7; /* Reduce opacity as the user scrolls */
 }
 
 .header .logo img {
-  max-height: 36px;
+  max-height: 44px;
   margin-right: 8px;
 }
 
 .header .logo h1 {
-  font-size: 30px;
+  font-size: 40px;
   margin: 0;
   font-weight: 700;
-  color: var(--heading-color);
+  font-family: "Signika Negative", sans-serif; /* Changed font to Signika Negative */
+  background: linear-gradient(90deg, #ffffff 45%, var(--accent-color) 55%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
 }
 
 .header .btn-book-a-table,
 .header .btn-book-a-table:focus {
-  color: var(--default-color);
+  color: var(--accent-color);
+  background-color: transparent;
   border: 2px solid var(--accent-color);
   text-transform: uppercase;
-  font-size: 14px;
-  padding: 6px 24px;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 6px 20px;
   margin: 0 5px 0 30px;
   border-radius: 50px;
   transition: 0.3s;
+  position: relative;
+  box-shadow: none;
 }
 
+/* Remove the line below the button */
+.header .btn-book-a-table:after {
+  display: none;
+}
+
+/* Fill with accent color on hover */
 .header .btn-book-a-table:hover,
 .header .btn-book-a-table:focus:hover {
-  color: var(--default-color);
+  color: var(--contrast-color);
   background: var(--accent-color);
 }
 
@@ -365,7 +396,7 @@ h6 {
     padding: 18px 15px;
     font-size: 14px;
     font-family: var(--nav-font);
-    font-weight: 400;
+    font-weight: 500; /* Slightly bolder */
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -388,7 +419,8 @@ h6 {
   .navmenu li:hover>a,
   .navmenu .active,
   .navmenu .active:focus {
-    color: var(--nav-hover-color);
+    color: var(--accent-color); /* Changed from gold */
+    font-weight: 700;
   }
 
   .navmenu .dropdown ul {
@@ -424,7 +456,7 @@ h6 {
   .navmenu .dropdown ul a:hover,
   .navmenu .dropdown ul .active:hover,
   .navmenu .dropdown ul li:hover>a {
-    color: var(--nav-dropdown-hover-color);
+    color: var(--accent-color); /* Changed from gold */
   }
 
   .navmenu .dropdown:hover>ul {
@@ -1719,4 +1751,197 @@ section,
 --------------------------------------------------------------*/
 .starter-section {
   /* Add your styles here */
+}
+
+/* Custom Menu Scroll Slider */
+.menu-scroll-slider {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 70%;
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.menu-scroll-slider .menu-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 80%;
+  width: 8px;
+  border-radius: 4px;
+  background: rgba(206, 18, 18, 0.2);
+  outline: none;
+  writing-mode: bt-lr; /* Vertical slider */
+  -webkit-writing-mode: bt-lr;
+  -ms-writing-mode: bt-lr;
+  transform: rotate(180deg);
+}
+
+.menu-scroll-slider .menu-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(206, 18, 18, 0.8);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.menu-scroll-slider .menu-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(206, 18, 18, 0.8);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none; /* Remove default Firefox border */
+}
+
+/* Menu wrapper styles - ensure scrolling works properly */
+.menu-container-wrapper {
+  position: relative;
+  height: 600px !important;
+  overflow-y: auto !important;
+  scrollbar-width: none !important; /* Firefox */
+  -ms-overflow-style: none !important; /* IE and Edge */
+}
+
+.menu-container-wrapper::-webkit-scrollbar {
+  display: none !important; /* Chrome, Safari, Opera */
+}
+
+/* Hide the slider but keep it functional */
+.menu-scroll-helper {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Ensure scrolling works smoothly */
+.menu-container-wrapper {
+  position: relative;
+  height: 600px !important;
+  overflow-y: auto !important;
+  scrollbar-width: none !important; /* Firefox */
+  -ms-overflow-style: none !important; /* IE and Edge */
+  scroll-behavior: smooth;
+}
+
+.menu-container-wrapper::-webkit-scrollbar {
+  display: none !important; /* Chrome, Safari, Opera */
+}
+
+/* Add subtle scroll indicator at the bottom */
+.menu-container-wrapper::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 30px;
+  background: linear-gradient(to top, rgba(255, 255, 255, 0.8), transparent);
+  pointer-events: none;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+/* Hide gradient when at bottom */
+.menu-container-wrapper.at-bottom::after {
+  opacity: 0;
+}
+
+/* Filter Navigation with Horizontal Slider */
+.filter-container {
+  position: relative;
+}
+
+.filter-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+}
+
+.filter-wrapper {
+  width: 90%;
+  overflow-x: hidden;
+  margin: 0 auto;
+  position: relative;
+}
+
+.menu-filters {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  transition: transform 0.3s ease;
+  white-space: nowrap;
+  width: auto;
+  padding: 0 10px;
+}
+
+.menu-filters li {
+  margin: 0 5px;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  display: inline-block;
+  white-space: nowrap;
+  background-color: var(--background-color);
+}
+
+.menu-filters li.filter-active {
+  background-color: rgba(239, 147, 18, 0.1);
+  color: #fff;
+}
+
+.filter-nav-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--accent-color);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  transition: all 0.3s ease;
+  opacity: 0.8;
+}
+
+.filter-nav-btn:hover {
+  opacity: 1;
+  background-color: var(--accent-darker);
+}
+
+.prev-btn {
+  left: 0;
+}
+
+.next-btn {
+  right: 0;
+}
+
+.filter-nav-btn i {
+  font-size: 18px;
+}
+
+/* Hide buttons when not needed (for small number of filters) */
+@media (min-width: 1200px) {
+  .filter-wrapper {
+    width: 95%;
+  }
 }
